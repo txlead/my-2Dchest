@@ -1,0 +1,140 @@
+body, html { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #1889d5; /* Или другой цвет */
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif; /* Устанавливаем шрифт */
+}
+
+#container {
+  position: relative;
+  text-align: center;
+}
+
+#chest {
+  cursor: pointer;
+  display: block; /* Обеспечьте, чтобы изображение занимало блоковое пространство */
+  margin: 0 auto; /* Центрируем изображение */
+  animation: jump 1s ease-in-out infinite; /* Анимация прыжка */
+}
+
+@keyframes jump {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); } /* Настройка высоты прыжка */
+}
+
+/* Анимация пульсации для текста */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1); /* Исходный размер */
+  }
+  50% {
+    transform: scale(1.1); /* Увеличение размера */
+  }
+}
+
+/* Анимация для текста */
+@keyframes lePeek {
+  from {
+    transform: scale(10) translateY(50%); /* Начальное состояние: увеличенный и смещенный вниз */
+    opacity: 0; /* Полностью прозрачный */
+  }
+  to {
+    transform: scale(1) translateY(0); /* Конечное состояние: нормальный размер и без смещения */
+    opacity: 1; /* Полная непрозрачность */
+  }
+}
+
+.lePeek {
+  animation-name: lePeek, pulse; /* Добавляем анимацию пульсации */
+  animation-duration: 1.5s, 1s; /* Продолжительность обеих анимаций */
+  animation-timing-function: ease-out, ease-in-out; /* Разные функции временной интерполяции */
+  animation-fill-mode: forwards; /* Держит финальное состояние анимации */
+  animation-delay: 0s, 0.5s; /* Задержка для второй анимации */
+}
+
+.effect3d {
+  animation-name: effect3d;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards; /* Держит финальное состояние анимации */
+}
+
+@keyframes effect3d {
+  to {
+    text-shadow: 0 1px 0 #ccc, 
+                 0 2px 0 #c9c9c9, 
+                 0 3px 0 #bbb, 
+                 0 4px 0 #b9b9b9, 
+                 0 5px 0 #aaa, 
+                 0 6px 1px rgba(0, 0, 0, .1), 
+                 0 0 5px rgba(0, 0, 0, .1), 
+                 0 1px 3px rgba(0, 0, 0, .3), 
+                 0 3px 5px rgba(0, 0, 0, .2), 
+                 0 5px 10px rgba(0, 0, 0, .25), 
+                 0 10px 10px rgba(0, 0, 0, .2), 
+                 0 20px 20px rgba(0, 0, 0, .15);
+  }
+}
+
+/* Стили для салюта */
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Не мешает кликам */
+  overflow: hidden; /* Скрываем выходящие за границы частицы */
+  z-index: 20; /* Делаем слой над всеми элементами */
+}
+
+.firework {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0;
+  animation: firework-animation 1s forwards;
+}
+
+@keyframes firework-animation {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0; /* Исчезает по завершении */
+  }
+}
+
+@keyframes shine {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8; /* Максимальная непрозрачность */
+  }
+  100% {
+    opacity: 0; /* Возвращаемся к начальной непрозрачности */
+  }
+}
+
+#message {
+  display: none; /* Скрываем сообщение по умолчанию */
+  font-size: 100px; /* Уменьшаем размер шрифта */
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center; /* Центрируем текст */
+  position: fixed;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90%;
+  white-space: nowrap; /* Ставим текст в одну строку */
+}
